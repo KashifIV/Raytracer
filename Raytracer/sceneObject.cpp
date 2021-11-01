@@ -39,8 +39,8 @@ pair<float, float> sceneObject::solveQuadratic(float a, float b, float c, float 
 pair<float, float> sphere::intersection(ray line){
     vec3 ec = line.e - position;
     float a = glm::dot(line.d, line.d);
-    float b = glm::dot(2.0f*line.d, ec*line.t);
-    float c = glm::dot(ec, ec);
+    float b = glm::dot(2.0f*line.d, ec);
+    float c = glm::dot(ec, ec) - radius* radius;
     
     float disc = getDiscriminant(a, b, c);
     if (disc < 0){
