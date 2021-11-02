@@ -22,5 +22,8 @@ public:
     
     vec3 e, d;
     float t;
+    vec3 getPoint(){
+        return e + d*t;
+    };
 };
 #endif /* ray_hpp */

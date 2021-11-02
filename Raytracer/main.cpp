@@ -33,6 +33,7 @@ scene scene;
 struct rayData{
     sceneObject* object;
     float distance;
+    vec3 normal;
 };
 
 
@@ -43,6 +44,8 @@ vector<rayData> raycast(ray ray){
             rayData data;
             data.object = scene.objects[i];
             data.distance = scene.objects[i]->intersectionPoint(ray);
+            ray.t = data.distance;
+            data.normal = scene.objects[i]->getNormal(ray);
             points.push_back(data);
         }
     }
@@ -52,9 +55,9 @@ void getColour(int x, int y, float &r, float &g, float &b){
     ray line = ray(vec3(x - SIZEX/2, y - SIZEY/2, 0), vec3(0.0f, 0.0f, 1.0f), 1);
     vector<rayData> data = raycast(line);
     if (data.size() > 0){
-        r = 1.0f;
-        g = 1.0f;
-        b = 1.0f;
+        r = data[0].normal.x*0.5f + 0.5f;
+        g = data[0].normal.y*0.5f + 0.5f;
+        b = data[0].normal.z*0.5f + 0.5f;
     }
 }
 
@@ -63,9 +66,9 @@ void render(){
     
     for (int i = 0; i < SIZEX; i++){
         for (int j =0; j < SIZEY; j++){
-            float r = float(i) / float(SIZEX);
-            float g = float(j)/float(SIZEY);
-            float b = 0.4;
+            float r = 0.1f;
+            float g = 0.1f;
+            float b = 0.1f;
             getColour(i, j, r, g, b);
             render.set_pixel(i, j, 255*r, 255*g, 255*b);
         }

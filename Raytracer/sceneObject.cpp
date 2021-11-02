@@ -72,3 +72,7 @@ float sphere::intersectionPoint(ray line){
         return values.second;
     }
 }
+
+vec3 sphere::getNormal(ray line){
+    return (line.getPoint() - position) / radius;
+}

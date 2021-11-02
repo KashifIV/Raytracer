@@ -28,6 +28,7 @@ public:
     };
     virtual bool intersects(ray line) {return false;};
     virtual float intersectionPoint (ray line) {return -1.0f;};
+    virtual vec3 getNormal(ray line) = 0;
 };
 
 class sphere : public sceneObject {
@@ -42,6 +43,8 @@ public:
     };
     virtual bool intersects(ray line) override;
     virtual float intersectionPoint(ray line) override;
+    virtual vec3 getNormal(ray line) override;
+    
 };
 
 //class plane: public sceneObject{
