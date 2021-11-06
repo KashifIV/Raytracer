@@ -9,6 +9,7 @@
 #include <math.h>
 #include <utility>
 #include <glm/glm.hpp>
+#include <iostream>
 
 using std::pair;
 
@@ -65,7 +66,7 @@ float sphere::intersectionPoint(ray line){
     if(values.first < 0 && values.second < 0){
         return 0;
     }
-    if (values.first > 0){
+    if (values.first > 0.3f && values.first < values.second){
         return values.first;
     }
     else{
@@ -75,4 +76,22 @@ float sphere::intersectionPoint(ray line){
 
 vec3 sphere::getNormal(ray line){
     return (line.getPoint() - position) / radius;
+}
+
+float plane::intersectionPoint(ray line){
+//    if (line.e != vec3(0, 0, 0)){
+//        vec3 direction = line.e - position;
+//        std::cout << direction.x << " " << direction.y << " " << direction.z << std::endl;
+//    }
+    float a = glm::dot(position - line.e, normal);
+    float b = glm::dot(line.d, normal);
+    return a / b;
+}
+
+bool plane::intersects(ray line){
+    return glm::dot(line.d, normal) != 0 && plane::intersectionPoint(line) > 0;
+}
+
+vec3 plane::getNormal(ray line){
+    return normal;
 }

@@ -8,6 +8,7 @@
 #ifndef object_h
 #define object_h
 
+#include <string>
 #include <utility>
 
 #include <glm/glm.hpp>
@@ -15,10 +16,23 @@
 
 using glm::vec3;
 using std::pair;
+using std::string;
+
+struct colour{
+    float r, g, b;
+    colour(float red, float green, float blue)
+    :r(red)
+    ,g(green)
+    ,b(blue){};
+    colour(vec3 col)
+    :r(col.r),
+    g(col.g),
+    b(col.b){};
+    vec3 toVec(){return vec3(r, g, b);};
+};
 
 class sceneObject {
 protected:
-    vec3 position;
     float getDiscriminant(float a, float b, float c);
     pair<float, float> solveQuadratic(float a, float b, float c, float disc);
 public:
@@ -26,9 +40,15 @@ public:
     :position{object_position}{
         
     };
+    vec3 position;
+    colour baseColour = colour(1.0f, 1.0f, 1.0f);
+    float diffuse = 0.4f;
+    float specular = 20.0f;
+    float reflectiveness = 0.05f;
     virtual bool intersects(ray line) {return false;};
     virtual float intersectionPoint (ray line) {return -1.0f;};
     virtual vec3 getNormal(ray line) = 0;
+    virtual string getName() = 0;
 };
 
 class sphere : public sceneObject {
@@ -44,17 +64,21 @@ public:
     virtual bool intersects(ray line) override;
     virtual float intersectionPoint(ray line) override;
     virtual vec3 getNormal(ray line) override;
+    virtual string getName() override {return "Sphere";};
     
 };
 
-//class plane: public sceneObject{
-//public:
-//    plane(vec3 object_position)
-//    :sceneObject(object_position){
-//
-//    };
-//    bool intersects(ray line) override;
-//    float intersectionPoint(ray line) override;
-//};
+class plane : public sceneObject{
+    vec3 normal;
+public:
+    plane(vec3 object_position, vec3 n) : sceneObject{object_position}, normal(n)
+    {
+        
+    };
+    virtual bool intersects(ray line) override;
+    virtual float intersectionPoint(ray line) override;
+    virtual vec3 getNormal(ray line) override;
+    virtual string getName() override {return "Plane";};
+};
 
 #endif /* object_h */
