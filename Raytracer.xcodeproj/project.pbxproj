@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AE899BD5272EF43200EC3CFB /* sceneObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE899BD4272EF43200EC3CFB /* sceneObject.cpp */; };
 		AE899BD9272EF9F700EC3CFB /* ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE899BD7272EF9F700EC3CFB /* ray.cpp */; };
+		AE899BE72730BDAA00EC3CFB /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE899BE62730BDAA00EC3CFB /* scene.cpp */; };
 		AED05D26270A529600DCF3FC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AED05D25270A529600DCF3FC /* main.cpp */; };
 		AED05D32270A541100DCF3FC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED05D31270A541100DCF3FC /* OpenGL.framework */; };
 		AED05D34270A542F00DCF3FC /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AED05D33270A542F00DCF3FC /* libglfw.3.3.dylib */; };
@@ -33,7 +34,10 @@
 		AE899BD4272EF43200EC3CFB /* sceneObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sceneObject.cpp; sourceTree = "<group>"; };
 		AE899BD7272EF9F700EC3CFB /* ray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray.cpp; sourceTree = "<group>"; };
 		AE899BD8272EF9F700EC3CFB /* ray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray.hpp; sourceTree = "<group>"; };
-		AED05D22270A529600DCF3FC /* GraphicsAssignment1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GraphicsAssignment1; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE899BE2272F19BC00EC3CFB /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		AE899BE4272F210200EC3CFB /* bitmap_image.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = bitmap_image.hpp; sourceTree = "<group>"; };
+		AE899BE62730BDAA00EC3CFB /* scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cpp; sourceTree = "<group>"; };
+		AED05D22270A529600DCF3FC /* Raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		AED05D25270A529600DCF3FC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AED05D31270A541100DCF3FC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		AED05D33270A542F00DCF3FC /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../usr/local/Cellar/glfw/3.3.4/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
@@ -57,7 +61,7 @@
 		AED05D19270A529600DCF3FC = {
 			isa = PBXGroup;
 			children = (
-				AED05D24270A529600DCF3FC /* GraphicsAssignment1 */,
+				AED05D24270A529600DCF3FC /* Raytracer */,
 				AED05D23270A529600DCF3FC /* Products */,
 				AED05D30270A541000DCF3FC /* Frameworks */,
 			);
@@ -66,12 +70,12 @@
 		AED05D23270A529600DCF3FC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AED05D22270A529600DCF3FC /* GraphicsAssignment1 */,
+				AED05D22270A529600DCF3FC /* Raytracer */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AED05D24270A529600DCF3FC /* GraphicsAssignment1 */ = {
+		AED05D24270A529600DCF3FC /* Raytracer */ = {
 			isa = PBXGroup;
 			children = (
 				AED05D25270A529600DCF3FC /* main.cpp */,
@@ -80,13 +84,16 @@
 				AE899BD4272EF43200EC3CFB /* sceneObject.cpp */,
 				AE899BD7272EF9F700EC3CFB /* ray.cpp */,
 				AE899BD8272EF9F700EC3CFB /* ray.hpp */,
+				AE899BE4272F210200EC3CFB /* bitmap_image.hpp */,
+				AE899BE62730BDAA00EC3CFB /* scene.cpp */,
 			);
-			path = GraphicsAssignment1;
+			path = Raytracer;
 			sourceTree = "<group>";
 		};
 		AED05D30270A541000DCF3FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE899BE2272F19BC00EC3CFB /* .gitignore */,
 				AED05D3E270A59F400DCF3FC /* libGLEW.2.2.0.dylib */,
 				AED05D33270A542F00DCF3FC /* libglfw.3.3.dylib */,
 				AED05D31270A541100DCF3FC /* OpenGL.framework */,
@@ -97,9 +104,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AED05D21270A529600DCF3FC /* GraphicsAssignment1 */ = {
+		AED05D21270A529600DCF3FC /* Raytracer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AED05D29270A529600DCF3FC /* Build configuration list for PBXNativeTarget "GraphicsAssignment1" */;
+			buildConfigurationList = AED05D29270A529600DCF3FC /* Build configuration list for PBXNativeTarget "Raytracer" */;
 			buildPhases = (
 				AED05D1E270A529600DCF3FC /* Sources */,
 				AED05D1F270A529600DCF3FC /* Frameworks */,
@@ -109,9 +116,9 @@
 			);
 			dependencies = (
 			);
-			name = GraphicsAssignment1;
+			name = Raytracer;
 			productName = GraphicsAssignment1;
-			productReference = AED05D22270A529600DCF3FC /* GraphicsAssignment1 */;
+			productReference = AED05D22270A529600DCF3FC /* Raytracer */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -127,7 +134,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AED05D1D270A529600DCF3FC /* Build configuration list for PBXProject "GraphicsAssignment1" */;
+			buildConfigurationList = AED05D1D270A529600DCF3FC /* Build configuration list for PBXProject "Raytracer" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -140,7 +147,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AED05D21270A529600DCF3FC /* GraphicsAssignment1 */,
+				AED05D21270A529600DCF3FC /* Raytracer */,
 			);
 		};
 /* End PBXProject section */
@@ -150,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE899BE72730BDAA00EC3CFB /* scene.cpp in Sources */,
 				AED05D26270A529600DCF3FC /* main.cpp in Sources */,
 				AE899BD5272EF43200EC3CFB /* sceneObject.cpp in Sources */,
 				AE899BD9272EF9F700EC3CFB /* ray.cpp in Sources */,
@@ -311,7 +319,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AED05D1D270A529600DCF3FC /* Build configuration list for PBXProject "GraphicsAssignment1" */ = {
+		AED05D1D270A529600DCF3FC /* Build configuration list for PBXProject "Raytracer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AED05D27270A529600DCF3FC /* Debug */,
@@ -320,7 +328,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AED05D29270A529600DCF3FC /* Build configuration list for PBXNativeTarget "GraphicsAssignment1" */ = {
+		AED05D29270A529600DCF3FC /* Build configuration list for PBXNativeTarget "Raytracer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AED05D2A270A529600DCF3FC /* Debug */,
